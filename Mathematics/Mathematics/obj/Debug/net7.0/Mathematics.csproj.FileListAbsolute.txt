@@ -1,0 +1,15 @@
+C:\Users\books\source\repos\Mathematics\Mathematics\bin\Debug\net7.0\Mathematics.exe
+C:\Users\books\source\repos\Mathematics\Mathematics\bin\Debug\net7.0\Mathematics.deps.json
+C:\Users\books\source\repos\Mathematics\Mathematics\bin\Debug\net7.0\Mathematics.runtimeconfig.json
+C:\Users\books\source\repos\Mathematics\Mathematics\bin\Debug\net7.0\Mathematics.dll
+C:\Users\books\source\repos\Mathematics\Mathematics\bin\Debug\net7.0\Mathematics.pdb
+C:\Users\books\source\repos\Mathematics\Mathematics\obj\Debug\net7.0\Mathematics.csproj.AssemblyReference.cache
+C:\Users\books\source\repos\Mathematics\Mathematics\obj\Debug\net7.0\Mathematics.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\books\source\repos\Mathematics\Mathematics\obj\Debug\net7.0\Mathematics.AssemblyInfoInputs.cache
+C:\Users\books\source\repos\Mathematics\Mathematics\obj\Debug\net7.0\Mathematics.AssemblyInfo.cs
+C:\Users\books\source\repos\Mathematics\Mathematics\obj\Debug\net7.0\Mathematics.csproj.CoreCompileInputs.cache
+C:\Users\books\source\repos\Mathematics\Mathematics\obj\Debug\net7.0\Mathematics.dll
+C:\Users\books\source\repos\Mathematics\Mathematics\obj\Debug\net7.0\refint\Mathematics.dll
+C:\Users\books\source\repos\Mathematics\Mathematics\obj\Debug\net7.0\Mathematics.pdb
+C:\Users\books\source\repos\Mathematics\Mathematics\obj\Debug\net7.0\Mathematics.genruntimeconfig.cache
+C:\Users\books\source\repos\Mathematics\Mathematics\obj\Debug\net7.0\ref\Mathematics.dll

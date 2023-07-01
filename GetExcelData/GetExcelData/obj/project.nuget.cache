@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "Zv1Ee1o1zVOxvt9LZ7CbeEbjqK0mWeub2fXOnb0AETlUqK8QM13TQqs9wB30Ezi7VNjtAxK/yyz8waLVj9ouEw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\books\\source\\repos\\GetExcelData\\GetExcelData\\GetExcelData.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\books\\.nuget\\packages\\documentformat.openxml\\2.11.3\\documentformat.openxml.2.11.3.nupkg.sha512",
+    "C:\\Users\\books\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
+    "C:\\Users\\books\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
+    "C:\\Users\\books\\.nuget\\packages\\spreadsheetlight\\3.5.0\\spreadsheetlight.3.5.0.nupkg.sha512",
+    "C:\\Users\\books\\.nuget\\packages\\system.drawing.common\\5.0.0\\system.drawing.common.5.0.0.nupkg.sha512",
+    "C:\\Users\\books\\.nuget\\packages\\system.io.packaging\\4.7.0\\system.io.packaging.4.7.0.nupkg.sha512"
+  ],
+  "logs": []
+}
