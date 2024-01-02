@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("VisorPosicion5")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8e895e85fc3799356bf6029dd114070ab64b6992")]
 [assembly: System.Reflection.AssemblyProductAttribute("VisorPosicion5")]
 [assembly: System.Reflection.AssemblyTitleAttribute("VisorPosicion5")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

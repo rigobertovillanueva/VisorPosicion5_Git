@@ -74,3 +74,4 @@ C:\Users\Admin\source\repos\SysArchProjects\VisorPosicion5\bin\Debug\net7.0\Viso
 C:\Users\Admin\source\repos\SysArchProjects\VisorPosicion5\bin\Debug\net7.0\VisorPosicion5.pdb
 C:\Users\Admin\source\repos\SysArchProjects\VisorPosicion5\obj\Debug\net7.0\VisorPosicion5.genruntimeconfig.cache
 C:\Users\Admin\source\repos\SysArchProjects\VisorPosicion5\obj\Debug\net7.0\ref\VisorPosicion5.dll
+C:\Users\Admin\source\repos\SysArchProjects\VisorPosicion5\obj\Debug\net7.0\VisorPosicion5.sourcelink.json
