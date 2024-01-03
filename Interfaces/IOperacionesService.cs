@@ -9,6 +9,7 @@ namespace VisorPosicion5.Services
         Task<List<Operacion>> GetAllAsync();
         Task CancelSaleAsync(int transactionId);
         Task ProcessVentaAsync(Operacion venta);
-        Task<(decimal totalAmount, decimal fifoRevenue, List<TransactionRevenue> topRevenueTransactions)> CalculateFifoAsync();
+        Task<(decimal PosicionUSD, decimal fifoRevenue, List<TransactionRevenue> topRevenueTransactions)> CalculateFifoAsync();
+       
     }
 }

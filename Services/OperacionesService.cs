@@ -59,22 +59,54 @@ namespace VisorPosicion5.Services
 
         // Other methods...
 
-        public async Task<(decimal totalAmount, decimal fifoRevenue, List<TransactionRevenue> topRevenueTransactions)> CalculateFifoAsync()
+        public async Task<(decimal PosicionUSD, decimal fifoRevenue, List<TransactionRevenue> topRevenueTransactions)> CalculateFifoAsync()
         {
             var operations = await _context.Operacions
                                            .OrderBy(op => op.FechaOperacion)
                                            .ToListAsync();
 
             var comprasQueue = new Queue<Operacion>(operations.Where(op => op.TipoOperacion == "compra"));
-            decimal totalAmount = comprasQueue.Sum(op => op.Amount) ?? 0;
+            var ventas = operations.Where(op => op.TipoOperacion == "venta").ToList();
+
+            // Initialize PosicionUSD based on the AvailableAmount of compra operations
+            decimal PosicionUSD = operations.Where(op => op.TipoOperacion == "compra")
+                                            .Sum(op => op.AvailableAmount.HasValue ? op.AvailableAmount.Value : 0);
+
             decimal fifoRevenue = 0;
             var topRevenueTransactions = new List<TransactionRevenue>();
 
-            // Here you would implement the logic to process the operations and calculate fifoRevenue and topRevenueTransactions.
-            // ...
+            foreach (var venta in ventas)
+            {
+                var linkedCompraRecord = _context.VentaCompraLinks
+                                                 .FirstOrDefault(link => link.VentaTransactionId == venta.TransactionId);
 
-            return (totalAmount, fifoRevenue, topRevenueTransactions);
+                if (linkedCompraRecord != null)
+                {
+                    var compra = _context.Operacions.Find(linkedCompraRecord.CompraTransactionId);
+
+                    if (compra != null && venta.TipoCambio.HasValue && compra.TipoCambio.HasValue)
+                    {
+                        decimal amountFromCompra = linkedCompraRecord.AmountLinked.HasValue ? linkedCompraRecord.AmountLinked.Value : 0;
+                        decimal revenue = (venta.TipoCambio.Value - compra.TipoCambio.Value) * amountFromCompra;
+
+                        fifoRevenue += revenue;
+                        if (revenue > 0)
+                        {
+                            topRevenueTransactions.Add(new TransactionRevenue { TransactionId = venta.TransactionId, Revenue = revenue });
+                        }
+
+                        // Adjust the PosicionUSD based on the linked amount
+                        PosicionUSD -= amountFromCompra;
+                    }
+                }
+            }
+
+            // Sort the top revenue transactions in descending order of revenue
+            topRevenueTransactions = topRevenueTransactions.OrderByDescending(tr => tr.Revenue).ToList();
+
+            return (PosicionUSD, fifoRevenue, topRevenueTransactions);
         }
+
 
         // Inside the OperacionesService class
         public async Task CancelSaleAsync(int transactionId)

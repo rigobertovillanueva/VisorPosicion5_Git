@@ -6,7 +6,7 @@ using VisorPosicion5.Services;
 var builder = WebApplication.CreateBuilder();
 
 
-// Add services to the container.
+// Add services to the container, Dependency Injection (DI) in an ASP.NET Core application is indeed for the entire application
 builder.Services.AddDbContext<VisorPosicionContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("VisorPosicionConnection")));
 
