@@ -25,10 +25,10 @@ public class OperacionesController : ControllerBase
     {
         try
         {
-            var (totalAmount, fifoRevenue, topRevenueTransactions) = await _operacionesService.CalculateFifoAsync();
+            var (posicionUSD, fifoRevenue, topRevenueTransactions) = await _operacionesService.CalculateFifoAsync();
             var result = new
             {
-                TotalAmountUSD = totalAmount,
+                PosicionUSD = posicionUSD,  // Updated to use PosicionUSD
                 FifoRevenueCLP = fifoRevenue,
                 TopRevenueTransactions = topRevenueTransactions
             };

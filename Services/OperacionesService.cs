@@ -65,28 +65,24 @@ namespace VisorPosicion5.Services
                                            .OrderBy(op => op.FechaOperacion)
                                            .ToListAsync();
 
-            var comprasQueue = new Queue<Operacion>(operations.Where(op => op.TipoOperacion == "compra"));
-            var ventas = operations.Where(op => op.TipoOperacion == "venta").ToList();
-
-            // Initialize PosicionUSD based on the AvailableAmount of compra operations
+            // PosicionUSD is the sum of AvailableAmount from compra operations
             decimal PosicionUSD = operations.Where(op => op.TipoOperacion == "compra")
                                             .Sum(op => op.AvailableAmount.HasValue ? op.AvailableAmount.Value : 0);
 
             decimal fifoRevenue = 0;
             var topRevenueTransactions = new List<TransactionRevenue>();
 
-            foreach (var venta in ventas)
+            foreach (var venta in operations.Where(op => op.TipoOperacion == "venta"))
             {
-                var linkedCompraRecord = _context.VentaCompraLinks
-                                                 .FirstOrDefault(link => link.VentaTransactionId == venta.TransactionId);
+                var linkedCompraRecords = _context.VentaCompraLinks
+                                                  .Where(link => link.VentaTransactionId == venta.TransactionId);
 
-                if (linkedCompraRecord != null)
+                foreach (var link in linkedCompraRecords)
                 {
-                    var compra = _context.Operacions.Find(linkedCompraRecord.CompraTransactionId);
-
+                    var compra = _context.Operacions.Find(link.CompraTransactionId);
                     if (compra != null && venta.TipoCambio.HasValue && compra.TipoCambio.HasValue)
                     {
-                        decimal amountFromCompra = linkedCompraRecord.AmountLinked.HasValue ? linkedCompraRecord.AmountLinked.Value : 0;
+                        decimal amountFromCompra = link.AmountLinked.HasValue ? link.AmountLinked.Value : 0;
                         decimal revenue = (venta.TipoCambio.Value - compra.TipoCambio.Value) * amountFromCompra;
 
                         fifoRevenue += revenue;
@@ -94,18 +90,16 @@ namespace VisorPosicion5.Services
                         {
                             topRevenueTransactions.Add(new TransactionRevenue { TransactionId = venta.TransactionId, Revenue = revenue });
                         }
-
-                        // Adjust the PosicionUSD based on the linked amount
-                        PosicionUSD -= amountFromCompra;
                     }
                 }
             }
 
-            // Sort the top revenue transactions in descending order of revenue
             topRevenueTransactions = topRevenueTransactions.OrderByDescending(tr => tr.Revenue).ToList();
 
             return (PosicionUSD, fifoRevenue, topRevenueTransactions);
         }
+
+
 
 
         // Inside the OperacionesService class
